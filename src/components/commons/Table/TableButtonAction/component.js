@@ -3,6 +3,7 @@ import { useStyles } from './stylesComponent';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 
+
 const TableButtonAction = props => {
   const classes = useStyles();
   const {
@@ -49,20 +50,20 @@ const TableButtonAction = props => {
         <Fab
           size="small"
           color="secondary"
-          aria-label="add"
+          aria-label="save"
           className={classes.margin}
           onClick={handleRequestSave.bind(this, row)}
         >
-          Save
+          <Icon>done_outline</Icon>
         </Fab>
         <Fab
           size="small"
           color="secondary"
-          aria-label="add"
+          aria-label="cancel"
           className={classes.margin}
           onClick={handleRequestCancel.bind(this, row)}
         >
-          Cancel
+          <Icon>highlight_off</Icon>
         </Fab>
       </div>
     )

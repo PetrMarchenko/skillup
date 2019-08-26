@@ -40,6 +40,7 @@ const RoutAuth = props => {
 
   return (
     <Route
+      path = {path}
       component={check()}
     />
   );

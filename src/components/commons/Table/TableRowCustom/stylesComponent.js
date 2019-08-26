@@ -7,5 +7,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
       width: 200,
     },
+      selectEmpty: {
+          marginTop: theme.spacing(2),
+      },
   }),
 );

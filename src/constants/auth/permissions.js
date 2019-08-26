@@ -1,9 +1,10 @@
-import { USERS_PAGE, SKILLS_PAGE, HOME_PAGE, LOGIN_PAGE } from 'constants/routes';
+import { USERS_PAGE, USER_PAGE, SKILLS_PAGE, HOME_PAGE, LOGIN_PAGE } from 'constants/routes';
 import { ADMIN_ROLE, GUEST_ROLE, USER_ROLE } from 'constants/auth/role';
 
 const guestPermissions = [
   HOME_PAGE,
   USERS_PAGE,
+  USER_PAGE,
   SKILLS_PAGE,
   LOGIN_PAGE
 ];

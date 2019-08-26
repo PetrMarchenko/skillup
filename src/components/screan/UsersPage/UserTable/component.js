@@ -5,6 +5,8 @@ import TableHeadCustom from 'components/commons/Table/TableHeadCustom/component'
 import TableBodyCustom from 'components/commons/Table/TableBodyCustom/component';
 import { useStyles } from 'components/screan/UsersPage/UserTable/stylesComponent';
 
+import history from 'src/history';
+
 const UserTable = props => {
   const classes = useStyles();
 
@@ -18,17 +20,27 @@ const UserTable = props => {
   const onClickSave = (values) => {editUser(values); console.log('save', values)};
   const onClickCancel = (row) => {console.log('cancel', row)};
 
+  const onEdit = (id) => {history.push('/user/' + id)};
+
   const action = {
     open : onClickOpen,
     save: onClickSave,
     cancel: onClickCancel
   };
+
+  const dataGradation = [
+    {id : 1, title : 'Junior'},
+    {id : 2, title : 'Middle'},
+    {id : 3, title : 'Senior'},
+   ];
+
+
   const columns = [
     { id: 'id', label: 'ID', type: 'text' },
     { id: 'name', label: 'Name', type: 'text', isEdit: true },
-    { id: 'age', label: 'Age', type: 'text', isEdit: true },
-    { id: 'role', label: 'User role', type: 'text' },
-    // { id: 'position', label: 'Position', type: 'text' },
+    { id: 'department', label: 'Department', type: 'text' },
+    { id: 'gradation', label: 'Gradation', type: 'select', data: dataGradation, isEdit: true },
+    { id: 'edit', label: 'Link', type: 'link', value: 'Set skill', action: onEdit },
     { id: 'action', label: 'Action', type: 'object', action: action},
   ];
   const orderBy = 'id';
