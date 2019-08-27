@@ -10,7 +10,18 @@ export const DELETE_USER_STORE = 'DELETE_USER_STORE';
 export const EDIT_USER_ACTION = 'EDIT_USER_ACTION';
 export const EDIT_USER_STORE = 'EDIT_USER_STORE';
 
+export const GET_SKILL_USER_ACTION = 'GET_SKILL_USER_ACTION';
+export const LOAD_SKILL_USER_STORE = 'LOAD_SKILL_USER_STORE';
 
+
+export const getSkillUserAction = payload => ({
+  type: GET_SKILL_USER_ACTION,
+  payload
+});
+export const loadSkillUserAction = payload => ({
+  type: LOAD_SKILL_USER_STORE,
+  payload
+});
 export const editUserAction = payload => ({
   type: EDIT_USER_ACTION,
   payload

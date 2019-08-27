@@ -1,13 +1,24 @@
-import { LOAD_USER_STORE, EDIT_USER_STORE } from './actions';
+import {LOAD_USER_STORE, EDIT_USER_STORE, LOAD_SKILL_USER_STORE} from './actions';
+
+const user = {
+  skills: [],
+  data: []
+};
 
 const INIT = {
-  users: []
+  users: [],
+  user: user
 };
 
 export default function usersReducer(state = INIT, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case LOAD_SKILL_USER_STORE:
+      return {
+        ...state,
+        user: payload
+      };
     case LOAD_USER_STORE:
       return {
         ...state,

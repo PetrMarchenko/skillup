@@ -6,7 +6,6 @@ const addUserURL = `${API_URL}users`;
 const editUserURL = `${API_URL}users/`;
 const deleteUserURL = `${API_URL}users/`;
 
-
 export const fetchUserRequest = payload => request({
   method: 'get',
   url   : fetchUserURL,

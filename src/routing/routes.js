@@ -5,15 +5,13 @@ import SkillsPage from 'components/screan/SkillsPage/component';
 import UsersPage from 'components/screan/UsersPage/component';
 import LoginPage from 'components/screan/LoginPage';
 import AppPage from 'components/screan/AppPage/App';
-import UserPage from 'components/screan/UserPage/component';
+import UserPage from 'components/screan/UserPage';
 
 import { USERS_PAGE, USER_PAGE,  SKILLS_PAGE, HOME_PAGE, LOGIN_PAGE } from 'constants/routes';
 import RoutAuth from 'components/commons/RouteAuth';
 
 import Header from 'components/layout/Header/component';
 import Footer from 'components/layout/Footer/component';
-
-import { Route } from 'react-router-dom';
 
 export default () => (
   <div  className="app" >

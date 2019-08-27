@@ -5,7 +5,8 @@ import Link from '@material-ui/core/Link';
 import { useStyles } from './useStyles';
 import Login from './Login';
 import history from 'src/history';
-import { HOME_PAGE, USERS_PAGE } from 'constants/routes';
+import { HOME_PAGE, USERS_PAGE, SKILLS_PAGE } from 'constants/routes';
+
 
 
 function Header() {
@@ -36,6 +37,16 @@ function Header() {
               }}
           >
               Users
+          </Link>
+
+          <Link
+              component="button"
+              variant="body2"
+              onClick={() => {
+                  history.push(SKILLS_PAGE);
+              }}
+          >
+              Skills
           </Link>
 
         <Login/>
