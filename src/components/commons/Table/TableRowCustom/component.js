@@ -7,6 +7,8 @@ import TableButtonAction from 'components/commons/Table/TableButtonAction/compon
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/core/Link';
+import Fab from "@material-ui/core/Fab";
+import Icon from "@material-ui/core/Icon";
 
 const TableRowCustom = props => {
   const {
@@ -59,6 +61,21 @@ const TableRowCustom = props => {
           >
             {column.value}
           </Link>)
+    }
+
+    if (column.type === 'button') {
+      console.log('button');
+      return (
+          <Fab
+              size="small"
+              color="secondary"
+              aria-label="delete"
+              className={classes.margin}
+              onClick={() => {column.action(row.id)}}
+          >
+            <Icon>delete_outline</Icon>
+          </Fab>
+      )
     }
 
     if (!column.isEdit) {

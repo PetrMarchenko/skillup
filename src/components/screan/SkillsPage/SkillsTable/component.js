@@ -13,11 +13,13 @@ const SkillsTable = props => {
     fetchSkill,
     editSkill,
     skills,
+    deleteSkill
   } = props;
 
   const onClickOpen = (row) => {console.log('open', row)};
   const onClickSave = (values) => {editSkill(values); console.log('save', values)};
   const onClickCancel = (row) => {console.log('cancel', row)};
+  const onClickDelete = (id) => {deleteSkill({id: id}); console.log('delete', id)};
 
   const action = {
     open : onClickOpen,
@@ -30,6 +32,7 @@ const SkillsTable = props => {
     { id: 'name', label: 'Name', type: 'text', isEdit: true },
     { id: 'department', label: 'Department', type: 'text' },
     { id: 'action', label: 'Action', type: 'object', action: action},
+    { id: 'delete', label: 'delete', type: 'button', action: onClickDelete},
   ];
   const orderBy = 'id';
   const order = 'desc';

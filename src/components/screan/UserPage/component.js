@@ -39,15 +39,6 @@ const UserPage = props => {
     };
 
 
-
-    // const [state, setState] = React.useState({
-    //     checkedB: true,
-    // });
-    // const handleChange = name => event => {
-    //     setState({ ...state, [name]: event.target.checked });
-    // };
-
-
   return (
     <div>
       User Id {props.match.params.id}
