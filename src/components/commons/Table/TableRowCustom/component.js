@@ -28,7 +28,7 @@ const TableRowCustom = props => {
   const classes = useStyles();
   const [values, setValues] = React.useState(getValues());
   const handleChange = name => event => {
-    console.log('values', values,'name', name);
+    // console.log('values', values,'name', name);
     setValues({...values, [name]: event.target.value});
   };
 
@@ -39,7 +39,7 @@ const TableRowCustom = props => {
 
   const getComponent = (row, column) => {
 
-    console.log(row, column);
+    // console.log(row, column);
 
     if (column.type === 'object') {
       return <TableButtonAction
@@ -52,7 +52,7 @@ const TableRowCustom = props => {
     }
 
     if (column.type === 'link') {
-      console.log('link');
+      // console.log('link');
       return (
           <Link
               component="button"
@@ -64,7 +64,7 @@ const TableRowCustom = props => {
     }
 
     if (column.type === 'button') {
-      console.log('button');
+      // console.log('button');
       return (
           <Fab
               size="small"

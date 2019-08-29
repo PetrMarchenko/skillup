@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UsersPage from './component';
-import { getSkillUserAction } from 'store/users/actions';
+import { getSkillUserAction, editSkillUserAction } from 'store/users/actions';
 import { fetchSkillAction } from 'store/skills/actions'
 
 const mapStateToProps = state => ({
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getSkillUser: getSkillUserAction,
   fetchSkill: fetchSkillAction,
+  editSkillUser: editSkillUserAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);

@@ -9,7 +9,8 @@ export default function skillsReducer(state = INIT, action) {
 
   switch (type) {
     case LOAD_SKILL_STORE:
-      console.log(payload);
+      console.log('LOAD_SKILL_STORE');
+      // console.log(payload);
       return {
         ...state,
         skills: payload
@@ -25,7 +26,7 @@ export default function skillsReducer(state = INIT, action) {
         skills: data
       };
     case ADD_SKILL_STORE:
-      console.log('ADD_SKILL_STORE',payload);
+      // console.log('ADD_SKILL_STORE',payload);
       return {
         ...state,
         skills: [

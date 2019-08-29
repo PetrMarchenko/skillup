@@ -1,9 +1,17 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { EDIT_USER_ACTION, editUserStore, FETCH_USER_ACTION, loadUserStore, GET_SKILL_USER_ACTION, loadSkillUserAction } from './actions';
+import {
+  EDIT_USER_ACTION,
+  editUserStore,
+  FETCH_USER_ACTION,
+  loadUserStore,
+  GET_SKILL_USER_ACTION,
+  loadSkillUserAction,
+  EDIT_SKILL_USER_ACTION
+} from './actions';
 
 import { editUserRequest, fetchUserRequest } from 'api/userRequest';
-import { getOneUserSkillRequest } from 'api/userSkillRequest';
+import { getOneUserSkillRequest, editUserSkillRequest } from 'api/userSkillRequest';
 
 function* fetchUser(action) {
   const { payload } = action;
@@ -53,6 +61,8 @@ function* editUser(action) {
 function* getSkillUser(action) {
   const { payload } = action;
 
+  console.log('getSkillUser');
+
   try {
     const response = yield call(getOneUserSkillRequest, payload);
 
@@ -60,7 +70,29 @@ function* getSkillUser(action) {
 
       let user = response.data;
 
+      // console.log('getSkillUser', user);
+
       yield put(loadSkillUserAction(user));
+    } else {
+      console.log(response);
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* editSkillUser(action) {
+  const { payload } = action;
+
+  try {
+    const response = yield call(editUserSkillRequest, payload);
+
+    if (response.status >= 200 && response.status <= 200) {
+
+      // let user = response.data;
+      //
+      // yield put(loadSkillUserAction(user));
     } else {
       console.log(response);
     }
@@ -74,5 +106,7 @@ function* getSkillUser(action) {
 export default function* UsersSaga() {
   yield takeEvery(FETCH_USER_ACTION, fetchUser);
   yield takeEvery(EDIT_USER_ACTION, editUser);
-  yield takeEvery(GET_SKILL_USER_ACTION, getSkillUser)
+  yield takeEvery(GET_SKILL_USER_ACTION, getSkillUser);
+  yield takeEvery(EDIT_SKILL_USER_ACTION, editSkillUser)
+
 }
