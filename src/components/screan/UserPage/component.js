@@ -10,10 +10,8 @@ const UserPage = props => {
     const classes = useStyles();
 
     const {
-        user,
+        userSkills,
         getSkillUser,
-        skills,
-        fetchSkill,
         editSkillUser
     } = props;
 
@@ -23,25 +21,13 @@ const UserPage = props => {
         };
         getSkillUser(params);
 
-        fetchSkill({
-            'order' : 'id',
-            'orderBy' : 'desc',
-        });
-
-    }, [getSkillUser, fetchSkill]);
+    }, [getSkillUser]);
 
 
-    const getValues =  () => {
-        console.log('USER', user.skills);
-        let map = {};
-        skills.map(skill => {
-            console.log('MAP', skill.id, (-1 !== user.skills.findIndex(element => element === skill.id)));
-            map[skill.id] = (-1 !== user.skills.findIndex(element => element === skill.id));
-        });
-        return map;
-    };
-    const [values, setValues] = React.useState(getValues());
+    const [onChange, setOnChange] = React.useState(false);
+    const [values, setValues] = React.useState(userSkills.userSkills);
     const handleChange = name => event => {
+        setOnChange(true);
         setValues({...values, [name]: event.target.checked});
     };
     const onClickSubmit = () => {
@@ -49,24 +35,25 @@ const UserPage = props => {
         user.id = props.match.params.id;
         user.skills = [];
 
-        skills.map(skill => {
+        userSkills.skills.map(skill => {
             if (values[skill.id]) {
                 user.skills.push(skill.id);
             }
         });
-
         editSkillUser(user);
-
-        // console.log(user);
     };
 
+    if (userSkills.userSkills !== values && !onChange) {
+        setValues(userSkills.userSkills);
+        setOnChange(false);
+    }
 
   return (
     <div>
       User Id {props.match.params.id}
         {
-            skills.map(skill => (
-                <FormControlLabel
+            userSkills.skills.map(skill => (
+                <FormControlLabel key = {skill.id}
                     control={
                         <Checkbox
                             checked={values[skill.id]}
@@ -89,7 +76,6 @@ const UserPage = props => {
         >
             SAVE
         </Button>
-        <div>{user.skills}</div>
     </div>
   );
 }

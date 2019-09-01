@@ -12,6 +12,8 @@ import {
 
 import { editUserRequest, fetchUserRequest } from 'api/userRequest';
 import { getOneUserSkillRequest, editUserSkillRequest } from 'api/userSkillRequest';
+import { fetchSkillRequest } from 'api/skillRequest';
+import {loadSkillStore} from "../skills/actions";
 
 function* fetchUser(action) {
   const { payload } = action;
@@ -61,18 +63,26 @@ function* editUser(action) {
 function* getSkillUser(action) {
   const { payload } = action;
 
-  console.log('getSkillUser');
-
   try {
     const response = yield call(getOneUserSkillRequest, payload);
 
     if (response.status >= 200 && response.status <= 200) {
+      let userSkills = response.data.skills;
 
-      let user = response.data;
 
-      // console.log('getSkillUser', user);
+      const skillsResponse = yield call(fetchSkillRequest, {
+        'order' : 'id',
+        'orderBy' : 'desc',
+      });
 
-      yield put(loadSkillUserAction(user));
+      let skills = skillsResponse.data;
+      const userSkillsMap = getValues(skills, userSkills);
+
+      yield put(loadSkillUserAction({
+        userSkills : userSkillsMap,
+        skills : skills
+      }));
+
     } else {
       console.log(response);
     }
@@ -81,6 +91,15 @@ function* getSkillUser(action) {
     console.log(error);
   }
 }
+
+const getValues =  (skills, userSkills) => {
+  let map = {};
+  skills.map(skill => {
+    map[skill.id] = (-1 !== userSkills.findIndex(element => element === skill.id));
+  });
+  return map;
+};
+
 
 function* editSkillUser(action) {
   const { payload } = action;
